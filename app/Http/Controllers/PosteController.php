@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePosteRequest;
 use App\Http\Requests\UpdatePosteRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Poste;
+use Illuminate\Http\Request;
 
 class PosteController extends Controller
 {
@@ -15,7 +17,8 @@ class PosteController extends Controller
      */
     public function index()
     {
-        //
+        $listePostes = Poste::all();
+        return view('poste', compact('listePostes'));
     }
 
     /**
