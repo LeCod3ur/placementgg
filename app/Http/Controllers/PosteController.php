@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePosteRequest;
 use App\Http\Requests\UpdatePosteRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Entreprise;
 use App\Models\Poste;
+use App\Models\Profil;
 use Illuminate\Http\Request;
 
 class PosteController extends Controller
@@ -17,8 +19,8 @@ class PosteController extends Controller
      */
     public function index()
     {
-        $listePostes = Poste::all();
-        return view('poste', compact('listePostes'));
+        $listePostes = Poste::where('EstActif', true)->get();
+        return view('postes.poste', compact('listePostes'));
     }
 
     /**
@@ -28,7 +30,9 @@ class PosteController extends Controller
      */
     public function create()
     {
-        //
+        $listeEntreprise = Entreprise::all();
+        $listeRecruteur = Profil::all();
+        return view('postes.create', compact('listeEntreprise', 'listeRecruteur'));
     }
 
     /**
@@ -37,9 +41,44 @@ class PosteController extends Controller
      * @param  \App\Http\Requests\StorePosteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePosteRequest $request)
+    public function createPosteForm(Request $request)
     {
-        //
+        $Titre = $request->titre;
+        $LieuDeTravail = $request->lieudetravail;
+        $NombreDePoste = $request->nombredeposte;
+        $TypeOffre = $request->typeoffre;
+        $idEntreprise = $request->identreprise;
+        $CreerPar = $request->creerpar;
+        $Horaire = $request->horaire;
+        $DureeEmploi = $request->dureeemploi;
+        $DateDebutPoste = $request->datedebutposte;
+        $DateFinPoste = $request->datefinposte;
+        $DateFinOffre = $request->datefinoffre;
+        $Description = $request->description;
+        $Lieu = $request->lieu;
+
+        $DatePublication = date('Y-m-d');
+
+        Poste::create([
+            'idPoste' => null,
+            'Titre' => $Titre,
+            'LieuDeTravail' => $LieuDeTravail,
+            'NombreDePoste' => $NombreDePoste,
+            'TypeOffre' => $TypeOffre,
+            'EstActif' => true,
+            'idEntreprise' => $idEntreprise,
+            'CreerPar' => $CreerPar,
+            'Horaire' => $Horaire,
+            'DureeEmploi' => $DureeEmploi,
+            'DatePublication' => $DatePublication,
+            'DateDebutPoste' => $DateDebutPoste,
+            'DateFinPoste' => $DateFinPoste,
+            'DateFinOffre' => $DateFinOffre,
+            'Description' => $Description,
+            'Lieu' => $Lieu
+        ]);
+
+        return redirect('/poste');
     }
 
     /**
@@ -48,9 +87,11 @@ class PosteController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function show(Poste $poste)
+    public function posteDetail(Poste $poste, Request $request)
     {
-        //
+        $idPoste = $request->idposte;
+        $posteDetail = Poste::join('Entreprise', 'Entreprise.idEntreprise', '=', 'Poste.idEntreprise')->join('Profil', 'Profil.idProfil', '=', 'Poste.CreerPar')->select('*', 'Poste.Description as descriptionPoste')->where('idPoste', $idPoste)->get();
+        return view('postes.detail', compact('posteDetail'));
     }
 
     /**
@@ -59,9 +100,13 @@ class PosteController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function edit(Poste $poste)
+    public function edit(Poste $poste, Request $request)
     {
-        //
+        $idPoste = $request->idposte;
+        $posteDetail = Poste::join('Entreprise', 'Entreprise.idEntreprise', '=', 'Poste.idEntreprise')->join('Profil', 'Profil.idProfil', '=', 'Poste.CreerPar')->select('*', 'Poste.Description as descriptionPoste')->where('idPoste', $idPoste)->get();
+        $listeEntreprise = Entreprise::all();
+        $listeRecruteur = Profil::all();
+        return view('postes.edit', compact('posteDetail', 'poste', 'listeEntreprise', 'listeRecruteur' ));
     }
 
     /**
@@ -71,9 +116,40 @@ class PosteController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePosteRequest $request, Poste $poste)
+    public function update(Request $request, Poste $poste)
     {
-        //
+        $idPoste = $request->idposte;
+        $Titre = $request->titre;
+        $LieuDeTravail = $request->lieudetravail;
+        $NombreDePoste = $request->nombredeposte;
+        $TypeOffre = $request->typeoffre;
+        $idEntreprise = $request->identreprise;
+        $CreerPar = $request->creerpar;
+        $Horaire = $request->horaire;
+        $DureeEmploi = $request->dureeemploi;
+        $DateDebutPoste = $request->datedebutposte;
+        $DateFinPoste = $request->datefinposte;
+        $DateFinOffre = $request->datefinoffre;
+        $Description = $request->description;
+        $Lieu = $request->lieu;
+
+        Poste::where('idPoste', $idPoste)->update([
+            'Titre' => $Titre,
+            'LieuDeTravail' => $LieuDeTravail,
+            'NombreDePoste' => $NombreDePoste,
+            'TypeOffre' => $TypeOffre,
+            'idEntreprise' => $idEntreprise,
+            'CreerPar' => $CreerPar,
+            'Horaire' => $Horaire,
+            'DureeEmploi' => $DureeEmploi,
+            'DateDebutPoste' => $DateDebutPoste,
+            'DateFinPoste' => $DateFinPoste,
+            'DateFinOffre' => $DateFinOffre,
+            'Description' => $Description,
+            'Lieu' => $Lieu
+        ]);
+
+        return redirect('/poste');
     }
 
     /**
@@ -82,8 +158,14 @@ class PosteController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Poste $poste)
+    public function desactiver(Request $request, Poste $poste)
     {
-        //
+        $idPoste = $request->idposte;
+
+        Poste::where('idPoste', $idPoste)->update([
+            'EstActif' => false
+        ]);
+
+        return redirect('/poste');
     }
 }
