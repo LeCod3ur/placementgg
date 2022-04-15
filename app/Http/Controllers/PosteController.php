@@ -19,7 +19,8 @@ class PosteController extends Controller
      */
     public function index()
     {
-        $listePostes = Poste::where('EstActif', true)->get();
+        $listePostes = Poste::where('EstActif', true)->get()->sortByDesc('DatePublication');
+
         return view('postes.poste', compact('listePostes'));
     }
 
@@ -32,7 +33,11 @@ class PosteController extends Controller
     {
         $listeEntreprise = Entreprise::all();
         $listeRecruteur = Profil::all();
-        return view('postes.create', compact('listeEntreprise', 'listeRecruteur'));
+
+        //Date et heure locale
+        date_default_timezone_set('ETC');
+        $date = date('Y-m-d G:i:s');
+        return view('postes.create', compact('listeEntreprise', 'listeRecruteur', 'date'));
     }
 
     /**
@@ -57,7 +62,7 @@ class PosteController extends Controller
         $Description = $request->description;
         $Lieu = $request->lieu;
 
-        $DatePublication = date('Y-m-d');
+        $DatePublication = date('Y-m-d G:i:s');
 
         Poste::create([
             'idPoste' => null,
@@ -116,7 +121,7 @@ class PosteController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Poste $poste)
+    public function updateForm(Request $request, Poste $poste)
     {
         $idPoste = $request->idposte;
         $Titre = $request->titre;
@@ -158,7 +163,7 @@ class PosteController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function desactiver(Request $request, Poste $poste)
+    public function desactiverForm(Request $request, Poste $poste)
     {
         $idPoste = $request->idposte;
 

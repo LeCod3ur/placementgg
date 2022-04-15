@@ -41,7 +41,13 @@
                         <td>{{ $poste->Horaire }}</td>
                         <td>{{ $poste->Lieu }}</td>
                         <td>{{ $poste->DureeEmploi }}</td>
-                        <td>{{ $poste->DatePublication }}</td>
+                        <td>
+                            <?php
+                                $dateTime = strtotime($poste->DatePublication);
+                                $datePublicateion = date('Y-m-d', $dateTime);
+                            ?>
+                            {{  $datePublicateion }}
+                        </td>
                         <td>{{ $poste->DateFinOffre }}</td>
                         <td>{{ $poste->Description }}</td>
                         <td>

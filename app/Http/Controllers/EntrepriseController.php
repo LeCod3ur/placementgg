@@ -105,7 +105,7 @@ class EntrepriseController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Entreprise $entreprise)
+    public function updateForm(Request $request, Entreprise $entreprise)
     {
         $idEntreprise = $request->identreprise;
         $NomEntreprise = $request->nomentreprise;
@@ -145,7 +145,7 @@ class EntrepriseController extends Controller
      * @param  \App\Models\Poste  $poste
      * @return \Illuminate\Http\Response
      */
-    public function desactiver(Request $request, Entreprise $entreprise)
+    public function desactiverForm(Request $request, Entreprise $entreprise)
     {
         $idEntreprise = $request->identreprise;
 
