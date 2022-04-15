@@ -59,7 +59,7 @@
                                     <input type="hidden" name="identreprise" id="identreprise" value="{{ $entreprise->idEntreprise }}" />
                                     <input type="submit" class="btn btn-outline-danger" value="Effacer"/>
                                 </form>
-                            </div-->
+                            </div>
                         </td>
                       </tr>
                     @endforeach
