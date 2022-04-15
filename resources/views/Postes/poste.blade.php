@@ -10,7 +10,7 @@
 <body>
     <div class="container-fluid py-5 px-5">
         <h1 class="mb-3">Liste de tous les postes</h1>
-        <a href="{{ route('createposte') }}" class="btn btn-secondary btn-sm">Creer un nouveau poste</a>
+        <a href="{{ route('createPoste') }}" class="btn btn-secondary btn-sm">Creer un nouveau poste</a>
         <hr/>
         <div class="row">
             <table class="table table-striped">
@@ -57,12 +57,12 @@
                                     <input type="hidden" name="idposte" id="idposte" value="{{ $poste->idPoste }}" />
                                     <input type="submit" class="btn btn-outline-secondary" value="Voir"/>
                                 </form>
-                                <form action="{{ route('editposte') }}" method="post">
+                                <form action="{{ route('editPoste') }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="idposte" id="idposte" value="{{ $poste->idPoste }}" />
                                     <input type="submit" class="btn btn-outline-primary" value="Editer"/>
                                 </form>
-                                <form action="{{ route('desactiverposte') }}" method="post">
+                                <form action="{{ route('desactiverPoste') }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="idposte" id="idposte" value="{{ $poste->idPoste }}" />
                                     <input type="submit" class="btn btn-outline-danger" value="Effacer"/>

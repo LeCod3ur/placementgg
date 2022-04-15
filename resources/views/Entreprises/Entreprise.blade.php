@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="container-fluid py-5 px-5">
-        <h1 class="mb-3">Liste de toutes les Entrprises</h1>
-        <a href="{{ route('createentreprise') }}" class="btn btn-secondary btn-sm">Creer une nouvelle entreprise</a>
+        <h1 class="mb-3">Liste de toutes les entreprises</h1>
+        <a href="{{ route('createEntreprise') }}" class="btn btn-secondary btn-sm">Creer une nouvelle entreprise</a>
         <hr/>
         <div class="row">
             <table class="table table-striped">
@@ -49,7 +49,7 @@
                                     <input type="hidden" name="identreprise" id="identreprise" value="{{ $entreprise->idEntreprise }}" />
                                     <input type="submit" class="btn btn-outline-secondary" value="Voir"/>
                                 </form>
-                                <form action="{{ route('editentreprise') }}" method="post">
+                                <form action="{{ route('editEntreprise') }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="identreprise" id="identreprise" value="{{ $entreprise->idEntreprise }}" />
                                     <input type="submit" class="btn btn-outline-primary" value="Editer"/>

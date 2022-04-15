@@ -85,7 +85,7 @@
 
         <a href="{{ route('entreprise') }}" class="btn btn-link mt-4">Retour à la liste</a>
         <div class="btn-group mt-4" role="group" aria-label="Basic outlined example">
-            <form action="{{ route('editentreprise') }}" method="post">
+            <form action="{{ route('editEntreprise') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="identreprise" id="identreprise" value="{{ $entreprise->idEntreprise }}" />
                 <input type="submit" class="btn btn-primary" value="Editer"/>

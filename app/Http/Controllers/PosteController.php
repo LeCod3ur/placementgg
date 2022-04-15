@@ -35,9 +35,7 @@ class PosteController extends Controller
         $listeRecruteur = Profil::all();
 
         //Date et heure locale
-        date_default_timezone_set('ETC');
-        $date = date('Y-m-d G:i:s');
-        return view('postes.create', compact('listeEntreprise', 'listeRecruteur', 'date'));
+        return view('postes.create', compact('listeEntreprise', 'listeRecruteur'));
     }
 
     /**

@@ -21,7 +21,6 @@
 <body>
     <div class="container py-5">
         <h1 class="mb-3">Creer un nouveau poste</h1>
-        <h6>Date/Heure actuelle: {{$date}}</h6>
         <div class="row">
             <form action="{{ route('addNewPoste') }}" method="post">
                 {{ csrf_field() }}

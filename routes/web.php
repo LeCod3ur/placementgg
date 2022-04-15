@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Poste;
 use App\Http\Controllers\PosteController;
@@ -21,6 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Connexion à l'application */
+Route::get('/login', [HomeController::class,'login']);
+
 
 /* Poste */
 
@@ -28,18 +32,18 @@ Route::get('/', function () {
 Route::get('/poste', [PosteController::class,'index'])->name('poste');
 
 //View Creation d'un poste
-Route::get('/createposte', [PosteController::class,'create'])->name('createposte');
-Route::post('/creerPoste', [PosteController::class, 'createPosteForm'])->name('addNewPoste');
+Route::get('/createposte', [PosteController::class,'create'])->name('createPoste');
+Route::post('/creerposte', [PosteController::class, 'createPosteForm'])->name('addNewPoste');
 
 //View pour voir les détails d'un poste
 Route::post('/postedetail', [PosteController::class,'posteDetail'])->name('posteDetail');
 
 //View pour editer un poste
-Route::post('/editposte', [PosteController::class,'edit'])->name('editposte');
+Route::post('/editposte', [PosteController::class,'edit'])->name('editPoste');
 Route::post('/editPoste', [PosteController::class, 'updateForm'])->name('updatePoste');
 
 //View pour effacer un poste
-Route::post('/desactiverposte', [PosteController::class,'desactiverForm'])->name('desactiverposte');
+Route::post('/desactiverposte', [PosteController::class,'desactiverForm'])->name('desactiverPoste');
 
 
 
@@ -49,19 +53,18 @@ Route::post('/desactiverposte', [PosteController::class,'desactiverForm'])->name
 Route::get('/entreprise', [EntrepriseController::class,'index'])->name('entreprise');
 
 //View Creation d'une entreprise
-Route::get('/createentreprise', [EntrepriseController::class,'create'])->name('createentreprise');
-Route::post('/creerEntreprise', [EntrepriseController::class, 'createEntrepriseForm'])->name('addNewEntreprise');
+Route::get('/createentreprise', [EntrepriseController::class,'create'])->name('createEntreprise');
+Route::post('/creerentreprise', [EntrepriseController::class, 'createEntrepriseForm'])->name('addNewEntreprise');
 
 //View pour les détails de l'entreprise
 Route::post('/entreprisedetail', [EntrepriseController::class,'entrepriseDetail'])->name('entrepriseDetail');
 
 //View pour editer une entreprise
-Route::post('/editentreprise', [EntrepriseController::class,'edit'])->name('editentreprise');
-Route::post('/editEntreprise', [EntrepriseController::class, 'updateForm'])->name('updateEntreprise');
+Route::post('/editentreprise', [EntrepriseController::class,'edit'])->name('editEntreprise');
+Route::post('/editentrepriseform', [EntrepriseController::class, 'updateForm'])->name('updateEntreprise');
 
 //View pour effacer une entreprise
-Route::post('/desactiverEntreprise', [EntrepriseController::class,'desactiverForm'])->name('desactiverEntreprise');
-
+Route::post('/desactiverentreprise', [EntrepriseController::class,'desactiverForm'])->name('desactiverEntreprise');
 
 /*  Profil  */
 Route::get('/profil', [ProfilController::class,'index'])->name('profil');

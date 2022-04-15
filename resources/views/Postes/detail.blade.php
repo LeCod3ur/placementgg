@@ -108,12 +108,12 @@
 
         <a href="{{ route('poste') }}" class="btn btn-link mt-4">Retour à la liste</a>
         <div class="btn-group mt-4" role="group" aria-label="Basic outlined example">
-            <form action="{{ route('editposte') }}" method="post">
+            <form action="{{ route('editPoste') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="idposte" id="idposte" value="{{ $poste->idPoste }}" />
                 <input type="submit" class="btn btn-primary" value="Editer"/>
             </form>
-            <form action="{{ route('desactiverposte') }}" method="post">
+            <form action="{{ route('desactiverPoste') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="idposte" id="idposte" value="{{ $poste->idPoste }}" />
                 <input type="submit" class="btn btn-danger" value="Effacer"/>
