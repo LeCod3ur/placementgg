@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 //View pour la liste des postes
 Route::get('/poste', [PosteController::class,'index'])->name('poste');
+Route::get('/profil', [ProfilController::class,'index'])->name('profil');
 
 //View Creation d'un poste
 Route::get('/createposte', [PosteController::class,'create'])->name('createposte');
