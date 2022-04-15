@@ -47,6 +47,7 @@ class EntrepriseController extends Controller
         $SiteWeb = $request->siteweb;
         $SecteurActivite = $request->secteuractivite;
         $Description = $request->description;
+        $Telephone = $request->telephone;
 
         if(($request->ishiring) == "1"){
             $isHiring = true;
@@ -66,7 +67,8 @@ class EntrepriseController extends Controller
             'SiteWeb' => $SiteWeb,
             'SecteurActivite' => $SecteurActivite,
             'Description' => $Description,
-            'isHiring' => $isHiring
+            'isHiring' => $isHiring,
+            'Telephone' => $Telephone
         ]);
 
         return redirect('/entreprise');
@@ -116,6 +118,7 @@ class EntrepriseController extends Controller
         $SiteWeb = $request->siteweb;
         $SecteurActivite = $request->secteuractivite;
         $Description = $request->description;
+        $Telephone = $request->telephone;
 
         if(($request->ishiring) == "1"){
             $isHiring = true;
@@ -133,7 +136,9 @@ class EntrepriseController extends Controller
             'SiteWeb' => $SiteWeb,
             'SecteurActivite' => $SecteurActivite,
             'Description' => $Description,
-            'isHiring' => $isHiring
+            'isHiring' => $isHiring,
+            'Telephone' => $Telephone
+
         ]);
 
         return redirect('/entreprise');

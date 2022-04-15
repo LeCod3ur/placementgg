@@ -29,6 +29,11 @@
                         <label for="floatingInput">Courriel</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="telephone" name="telephone" required
+                            placeholder="Telephone" value="{{ $entreprise->Telephone }}">
+                        <label for="floatingInput">Telephone</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         @if ($entreprise->NombreEmploye == '1-10')
 
                         @elseif ($entreprise->NombreEmploye == '11-50')

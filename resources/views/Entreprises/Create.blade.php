@@ -27,6 +27,11 @@
                     <label for="floatingInput">Courriel</label>
                 </div>
                 <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="telephone" name="telephone" required
+                        placeholder="Telephone">
+                    <label for="floatingInput">Telephone</label>
+                </div>
+                <div class="form-floating mb-3">
                     <select class="form-select" id="nombreemploye" name="nombreemploye" required
                         aria-label="Floating label select example">
                         <option selected>Choisir le nombre d'employe</option>

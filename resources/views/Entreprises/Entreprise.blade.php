@@ -19,6 +19,7 @@
                     <th scope="col">idEntreprise</th>
                     <th scope="col">Nom de l'entreprise</th>
                     <th scope="col">Courriel</th>
+                    <th scope="col">Telephone</th>
                     <th scope="col">Nbre d'employe</th>
                     <th scope="col">Adresse</th>
                     <th scope="col">Année de création</th>
@@ -35,6 +36,7 @@
                         <th>{{ $entreprise->idEntreprise }}</th>
                         <td>{{ $entreprise->NomEntreprise }}</td>
                         <td>{{ $entreprise->Courriel }}</td>
+                        <td>{{ $entreprise->Telephone }}</td>
                         <td>{{ $entreprise->NombreEmploye }}</td>
                         <td>{{ $entreprise->Adresse }}</td>
                         <td>{{ $entreprise->AnneeDeCreation }}</td>
