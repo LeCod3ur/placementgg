@@ -4,6 +4,7 @@ use App\Http\Controllers\EntrepriseController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Poste;
 use App\Http\Controllers\PosteController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------

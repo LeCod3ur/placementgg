@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProfilRequest;
 use App\Http\Requests\UpdateProfilRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Profil;
+use Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {
@@ -15,7 +17,8 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        //
+        $listeProfils = Profil::all();
+        return view('profil', compact('listeProfils'));
     }
 
     /**
