@@ -24,6 +24,13 @@ Route::get('/', function () {
 
 /* Connexion à l'application */
 Route::get('/login', [HomeController::class,'login']);
+Route::post('/loginform', [HomeController::class, 'loginForm'])->name('loginForm');
+
+/* Accueil */
+Route::get('/home', [HomeController::class,'home']);
+
+/* Deconnexion */
+Route::get('/logout',[HomeController::class, 'logout'])->name('logout');
 
 
 /* Poste */
