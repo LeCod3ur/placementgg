@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\EntrepriseController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Poste;
+use App\Models\Profil;
+use App\Models\Entreprise;
+use App\Models\Recruteur;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\RecruteurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +65,41 @@ Route::post('/editEntreprise', [EntrepriseController::class, 'update'])->name('u
 
 //View pour effacer une entreprise
 Route::post('/desactiverEntreprise', [EntrepriseController::class,'desactiver'])->name('desactiverEntreprise');
+
+/* Profil */
+
+//View pour la liste des profil
+Route::get('/profil', [ProfilController::class,'index'])->name('profil');
+
+//View Creation d'un profil
+Route::get('/createProfil', [ProfilController::class,'create'])->name('createProfil');
+Route::post('/creerProfil', [ProfilController::class, 'createProfilForm'])->name('addNewProfil');
+
+//View pour les détails du profil
+Route::post('/profilDetail', [ProfilController::class,'profilDetail'])->name('profilDetail');
+
+//View pour editer un profil
+Route::post('/editProfil', [ProfilController::class,'edit'])->name('editProfil');
+Route::post('/editProfil', [ProfilController::class, 'update'])->name('updateProfil');
+
+//View pour effacer un profil
+Route::post('/desactiverProfil', [ProfilController::class,'desactiver'])->name('desactiverProfil');
+
+/* Recruteur */
+
+//View pour la liste des recruteur
+Route::get('/recruteur', [RecruteurController::class,'index'])->name('recruteur');
+
+//View Creation d'un recruteur
+Route::get('/createRecruteur', [RecruteurController::class,'create'])->name('createRecruteur');
+Route::post('/creerRecruteur', [RecruteurController::class, 'createRecruteurForm'])->name('addNewRecruteur');
+
+//View pour les détails du recruteur
+Route::post('/recruteurDetail', [RecruteurController::class,'recruteurDetail'])->name('recruteurDetail');
+
+//View pour editer un recruteur
+Route::post('/editRecruteur', [RecruteurController::class,'edit'])->name('editRecruteur');
+Route::post('/editRecruteur', [RecruteurController::class, 'update'])->name('updateRecruteur');
+
+//View pour effacer un recruteur
+Route::post('/desactiverRecruteur', [RecruteurController::class,'desactiver'])->name('desactiverRecruteur');
