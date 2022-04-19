@@ -27,11 +27,11 @@
                         @endif
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ $userCourrielSession }}</li>
-                        <li class="list-group-item">Type: {{ $userTypeProfilSession }}</li>
+                        <li class="list-group-item"><b>{{ $userCourrielSession }}</b></li>
+                        <li class="list-group-item">Type: <b>{{ $userTypeProfilSession }}</b></li>
                         @if ($userTypeProfilSession == "Recruteur")
                             @foreach ( $activeUser as $user )
-                                <li class="list-group-item">Entreprise: {{ $user->idEntreprise }}</li>
+                                <li class="list-group-item">Entreprise: <b>{{ $user->NomEntreprise }}</b></li>
                             @endforeach
                         @endif
                     </ul>

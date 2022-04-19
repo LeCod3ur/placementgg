@@ -18,7 +18,7 @@ class HomeController extends Controller
         $userPrenomSession = session()->get("userPrenom");
         $userCourrielSession = session()->get("userCourriel");
         $userTypeProfilSession = session()->get("userTypeProfil");
-        $activeUser = Recruteur::all()->where('idProfil', $userIDSession);
+        $activeUser = Recruteur::join('Entreprise', 'Entreprise.idEntreprise', '=', 'Recruteur.idEntreprise')->select('*')->where('idProfil', $userIDSession)->get();
         return view ('Connexion.home', compact('userIDSession', 'userNomSession', 'userPrenomSession', 'userCourrielSession', 'userTypeProfilSession', 'activeUser'));
         }
         else
