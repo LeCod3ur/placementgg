@@ -23,7 +23,7 @@ class RecruteurController extends Controller
         $listeRecruteurs = Recruteur::all();
         return view('recruteurs.recruteur', compact('listeRecruteurs'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +50,7 @@ class RecruteurController extends Controller
         $Descrciption = $request->description;
         $EstActif = $request->estactif;
         $idEntreprise = $request->identreprise;
-        
+
         if(($request->estactif) == "oui"){
             $EstActif = true;
         }
@@ -63,12 +63,12 @@ class RecruteurController extends Controller
             'Description' => $Descrciption,
             'EstActif' => $EstActif,
             'IdEntreprise' => $idEntreprise
-                      
+
         ]);
 
         return redirect('/recruteur');
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -79,7 +79,7 @@ class RecruteurController extends Controller
     {
         $idProfil = $request->idProfil;
         $recruteurDetail = Recruteur::where('idProfil', $idProfil)->get();
-        return view('recruteurs.detail', compact('recruteurDetail'));
+        return view('recruteurs.detail', compact('recruteurDetail', 'recruteurDetail'));
     }
 
     /**
@@ -89,10 +89,10 @@ class RecruteurController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Recruteur $recruteur, Request $request)
-    {   
+    {
         $idProfil = $request->idProfil;
         $recruteurDetail = Recruteur::where('idProfil', $idProfil)->get();
-        return view('recruteurs.edit', compact('recruteur'));       
+        return view('recruteurs.edit', compact('recruteur'));
     }
 
     /**
@@ -116,7 +116,7 @@ class RecruteurController extends Controller
             'Description' => $Description,
             'EstActif' => $EstActif,
             'idEntreprise' => $idEntreprise
-           
+
         ]);
         return redirect('/recruteur');
     }
@@ -128,7 +128,7 @@ class RecruteurController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function desactiver(Recruteur $recruteur, Request $request)
-    {   
+    {
         $idProfil = $request->idprofil;
 
         Recruteur::where('idProfil', $idProfil)->update([

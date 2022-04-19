@@ -48,7 +48,7 @@
                           {{ csrf_field() }}
                           <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
                           <input type="submit" class="btn btn-outline-danger" value="Effacer"/>
-                      </form> 
+                      </form>
                   </div>
                 </td>
               </tr>

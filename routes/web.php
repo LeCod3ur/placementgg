@@ -91,7 +91,7 @@ Route::post('/creerProfil', [ProfilController::class, 'createProfilForm'])->name
 Route::post('/profilDetail', [ProfilController::class,'profilDetail'])->name('profilDetail');
 
 //View pour editer un profil
-Route::get('/editProfil', [ProfilController::class,'edit'])->name('editProfil');
+Route::post('/editProfil', [ProfilController::class,'edit'])->name('editProfil');
 Route::post('/editProfilfrom', [ProfilController::class, 'update'])->name('updateProfil');
 
 //View pour effacer un profil

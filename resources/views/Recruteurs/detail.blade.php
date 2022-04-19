@@ -45,25 +45,25 @@
                             <div class="fw-bold">Telephone</div>
                             {{ $profil->Telephone }}
                         </div>
-                      
+
                       </ul>
                 </div>
             </div>
-        @endforeach
 
-        <a href="{{ route('profil') }}" class="btn btn-link mt-4">Retour</a>
-        <div class="btn-group mt-4" role="group" aria-label="Basic outlined example">
-            <form action="{{ route('editprofil') }}" method="post">
-                {{ csrf_field() }}
-                <input type="hidden" name="idprofil" id="idprofil" value="{{ $profil->idProfil }}" />
-                <input type="submit" class="btn btn-primary" value="Editer"/>
-            </form>
-            <form action="{{ route('desactiverprofil') }}" method="post">
-                {{ csrf_field() }}
-                <input type="hidden" name="idprofil" id="idprofil" value="{{ $profil->idProfil }}" />
-                <input type="submit" class="btn btn-danger" value="Effacer"/>
-            </form>
-        </div>
+            <a href="{{ route('profil') }}" class="btn btn-link mt-4">Retour</a>
+            <div class="btn-group mt-4" role="group" aria-label="Basic outlined example">
+                <form action="{{ route('editProfil') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteurDetail->idProfil }}" />
+                    <input type="submit" class="btn btn-primary" value="Editer"/>
+                </form>
+                <form action="{{ route('desactiverprofil') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteurDetail->idProfil }}" />
+                    <input type="submit" class="btn btn-danger" value="Effacer"/>
+                </form>
+            </div>
+            @endforeach
     </div>
 
 
