@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Profil;
 use App\Models\Recruteur;
+use App\Models\Entreprise;
 
 class HomeController extends Controller
 {
@@ -69,5 +70,11 @@ class HomeController extends Controller
         session()->remove("userCourriel");
         session()->remove("userTypeProfil");
         return redirect("/login");
+    }
+
+    public function inscription()
+    {
+
+        return view('connexion.Signup');
     }
 }

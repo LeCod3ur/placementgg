@@ -36,7 +36,8 @@ Route::get('/home', [HomeController::class,'home']);
 /* Deconnexion */
 Route::get('/logout',[HomeController::class, 'logout'])->name('logout');
 
-
+/* Inscription */
+Route::get('/signup', [HomeController::class, 'inscription']);
 /* Poste */
 
 //View pour la liste des postes
@@ -75,13 +76,7 @@ Route::post('/editentreprise', [EntrepriseController::class,'edit'])->name('edit
 Route::post('/editentrepriseform', [EntrepriseController::class, 'updateForm'])->name('updateEntreprise');
 
 //View pour effacer une entreprise
-<<<<<<< HEAD
 Route::post('/desactiverentreprise', [EntrepriseController::class,'desactiverForm'])->name('desactiverEntreprise');
-
-/*  Profil  */
-Route::get('/profil', [ProfilController::class,'index'])->name('profil');
-=======
-Route::post('/desactiverEntreprise', [EntrepriseController::class,'desactiver'])->name('desactiverEntreprise');
 
 /* Profil */
 
@@ -120,4 +115,4 @@ Route::post('/editRecruteur', [RecruteurController::class, 'update'])->name('upd
 
 //View pour effacer un recruteur
 Route::post('/desactiverRecruteur', [RecruteurController::class,'desactiver'])->name('desactiverRecruteur');
->>>>>>> elian
+
