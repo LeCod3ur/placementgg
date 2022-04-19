@@ -42,7 +42,7 @@
                           <input type="hidden" name="idprofil" id="idprofil" value="{{ $profil->idProfil }}" />
                           <input type="submit" class="btn btn-outline-secondary" value="Voir"/>
                       </form>
-                      <form action="{{-- {{ route('editProfil') }} --}}" method="post">
+                      <form action="{{ route('editProfil') }}" method="get">
                           {{ csrf_field() }}
                           <input type="hidden" name="idprofil" id="idprofil" value="{{ $profil->idProfil }}" />
                           <input type="submit" class="btn btn-outline-primary" value="Editer"/>
@@ -51,7 +51,7 @@
                           {{ csrf_field() }}
                           <input type="hidden" name="idprofil" id="idprofil" value="{{ $profil->idProfil }}" />
                           <input type="submit" class="btn btn-outline-danger" value="Effacer"/>
-                      </form> 
+                      </form>
                   </div>
                 </td>
               </tr>

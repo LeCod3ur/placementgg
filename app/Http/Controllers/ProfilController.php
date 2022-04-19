@@ -59,7 +59,7 @@ class ProfilController extends Controller
             'Telephone' => $Telephone,
             'TypeProfil' => $TypeProfil,
             'EstActif' => true
-           
+
         ]);
 
         return redirect('/profil');
@@ -85,10 +85,10 @@ class ProfilController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Profil $profil, Request $request)
-    {   
+    {
         $idProfil = $request->idProfil;
         $profilDetail = Profil::where('idProfil', $idProfil)->get();
-        return view('profils.edit', compact('profil'));       
+        return view('profils.edit', compact('profil', 'profilDetail'));
     }
 
     /**
@@ -126,7 +126,7 @@ class ProfilController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function desactiver(Profil $profil, Request $request)
-    {   
+    {
         $idProfil = $request->idprofil;
 
         Profil::where('idProfil', $idProfil)->update([
