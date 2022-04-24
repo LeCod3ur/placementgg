@@ -48,20 +48,20 @@ class RecruteurController extends Controller
         $idProfil = $request->idprofil;
         $Poste = $request->poste;
         $Descrciption = $request->description;
-        $EstActif = $request->estactif;
+        //$EstActif = $request->estactif;
         $idEntreprise = $request->identreprise;
 
-        if(($request->estactif) == "oui"){
+        /* if(($request->estactif) == "oui"){
             $EstActif = true;
         }
         else if(($request->estactif) == "non"){
             $EstActif = false;
-        }
+        } */
         Recruteur::create([
             'idProfil' => $idProfil,
             'Poste' => $Poste,
             'Description' => $Descrciption,
-            'EstActif' => $EstActif,
+            //'EstActif' => $EstActif,
             'IdEntreprise' => $idEntreprise
 
         ]);
@@ -77,9 +77,9 @@ class RecruteurController extends Controller
      */
     public function recruteurDetail(Recruteur $recruteur, Request $request)
     {
-        $idProfil = $request->idProfil;
+        $idProfil = $request->idprofil;
         $recruteurDetail = Recruteur::where('idProfil', $idProfil)->get();
-        return view('recruteurs.detail', compact('recruteurDetail', 'recruteurDetail'));
+        return view('recruteurs.detail', compact('recruteurDetail', 'idProfil'));
     }
 
     /**
@@ -90,9 +90,9 @@ class RecruteurController extends Controller
      */
     public function edit(Recruteur $recruteur, Request $request)
     {
-        $idProfil = $request->idProfil;
+        $idProfil = $request->idprofil;
         $recruteurDetail = Recruteur::where('idProfil', $idProfil)->get();
-        return view('recruteurs.edit', compact('recruteur'));
+        return view('recruteurs.edit', compact('idProfil','recruteurDetail'));
     }
 
     /**
@@ -107,14 +107,14 @@ class RecruteurController extends Controller
         $idProfil = $request->idprofil;
         $Poste = $request->poste;
         $Description = $request->description;
-        $EstActif = $request->estactif;
+        //$EstActif = $request->estactif;
         $idEntreprise = $request->identreprise;
 
         Recruteur::where('idProfil', $idProfil)->update([
             'idProfil' => $idProfil,
             'Poste' => $Poste,
             'Description' => $Description,
-            'EstActif' => $EstActif,
+            //'EstActif' => $EstActif,
             'idEntreprise' => $idEntreprise
 
         ]);

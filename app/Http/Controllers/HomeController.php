@@ -12,21 +12,17 @@ class HomeController extends Controller
     public function home()
     {
         $user = session()->get("userID");
-        if($user != null)
-        {
-        $userIDSession = session()->get("userID");
-        $userNomSession = session()->get("userNom");
-        $userPrenomSession = session()->get("userPrenom");
-        $userCourrielSession = session()->get("userCourriel");
-        $userTypeProfilSession = session()->get("userTypeProfil");
-        $activeUser = Recruteur::all()->where('idProfil', $userIDSession);
-        return view ('Connexion.home', compact('userIDSession', 'userNomSession', 'userPrenomSession', 'userCourrielSession', 'userTypeProfilSession', 'activeUser'));
-        }
-        else
-        {
+        if ($user != null) {
+            $userIDSession = session()->get("userID");
+            $userNomSession = session()->get("userNom");
+            $userPrenomSession = session()->get("userPrenom");
+            $userCourrielSession = session()->get("userCourriel");
+            $userTypeProfilSession = session()->get("userTypeProfil");
+            $activeUser = Recruteur::all()->where('idProfil', $userIDSession);
+            return view('Connexion.home', compact('userIDSession', 'userNomSession', 'userPrenomSession', 'userCourrielSession', 'userTypeProfilSession', 'activeUser'));
+        } else {
             return redirect("/login");
         }
-
     }
 
     public function login()
@@ -37,8 +33,8 @@ class HomeController extends Controller
 
     public function loginForm(Request $request)
     {
-        $Courriel = $request -> email;
-        $MotDePasse = $request -> password;
+        $Courriel = $request->email;
+        $MotDePasse = $request->password;
 
         $user = Profil::where('Courriel', $Courriel)->where('MotDePasse', $MotDePasse)->first();
         $userID = Profil::where('Courriel', $Courriel)->value('idProfil');
@@ -47,12 +43,10 @@ class HomeController extends Controller
         $userCourriel = Profil::where('Courriel', $Courriel)->value('Courriel');
         $userTypeProfil = Profil::where('Courriel', $Courriel)->value('TypeProfil');
 
-        if($user == null)
-        {
+        if ($user == null) {
             $messageConnexion = "Courriel et mot de passe incorrect. Veuillez réessayer!";
             return redirect('/login');
-        } else
-        {
+        } else {
             $request->session()->put("userID", $userID);
             $request->session()->put("userNom", $userNom);
             $request->session()->put("userPrenom", $userPrenom);
@@ -63,7 +57,8 @@ class HomeController extends Controller
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         session()->remove("userID");
         session()->remove("userNom");
         session()->remove("userPrenom");
@@ -74,7 +69,59 @@ class HomeController extends Controller
 
     public function inscription()
     {
+        $listeEntreprise = Entreprise::all();
+        return view('connexion.Signup', compact('listeEntreprise'));
+    }
 
-        return view('connexion.Signup');
+    public function create()
+    {
+        $listeProfil = Profil::all();
+        $listeEntreprise = Entreprise::all();
+        $listeRecruteur = Recruteur::all();
+        return view('connexion.create', compact('listeProfil', 'listeEntreprise', 'listeRecruteur'));
+    }
+    public function createInscriptionForm(Request $request)
+    {
+        /* request()->validate([
+            'courriel' => ['required', 'courriel']
+          ]); */ 
+
+        $Courriel = $request->courriel;
+        $MotDePasse = $request->motdepasse;
+        $Nom = $request->nom;
+        $Prenom = $request->prenom;
+        $Telephone = $request->telephone;
+        $TypeProfil = 'recruteur';
+
+        //verifier si le mail existe deja dans la BD
+        if (Profil::where('Courriel', $Courriel)->first())
+        return redirect('/signup')->with('message', 'Attention! ce profil existe deja');
+
+        Profil::create([
+            'idProfil' => null,
+            'Courriel' => $Courriel,
+            'MotDePasse' => $MotDePasse,
+            'Nom' => $Nom,
+            'Prenom' => $Prenom,
+            'Telephone' => $Telephone,
+            'TypeProfil' => $TypeProfil,
+            'EstActif' => true
+        ]);
+
+        $idProfil=Profil::where('Courriel', $Courriel)->get('idProfil');
+        
+        $idEntreprise = $request->identreprise;
+        //$idProfil = Profil::where('idProfil')->get()->sortByDesc('idProfil')->first()->idProfil;
+
+        Recruteur::create([
+
+            'idProfil' => $idProfil,
+            'Poste' => $request->poste,
+            'Description' => $request->description,
+            'EstActif' => true,
+            'idEntreprise' => $idEntreprise
+        ]); 
+
+        return redirect('/login'); // redirection vers le login en attendant le landing page
     }
 }

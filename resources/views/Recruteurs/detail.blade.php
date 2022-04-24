@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid px-5 py-5">
         @foreach ($recruteurDetail as $recruteur)
-            <h2 class="mb-3"> {{ $recruteur->Prenom }} </h2>
+        <h2 class="mb-3">Detail Recruteur</h2>
             <hr />
             <div class="row">
                 <div class="col">
@@ -20,46 +20,46 @@
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">idProfil</div>
-                            {{ $recruteur->Courriel }}
+                            {{ $recruteur->idProfil }}
                         </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">MotDePasse</div>
-                            {{ $profil->MotDePasse }}
+                            <div class="fw-bold">Poste</div>
+                            {{ $recruteur->Poste }}
                         </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nom</div>
-                            {{ $profil->Nom }}
+                            <div class="fw-bold">Description</div>
+                            {{ $recruteur->Description }}
                         </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Prenom</div>
-                            {{ $profil->Prenom }}
+                            <div class="fw-bold">Est Actif?</div>
+                            {{ $recruteur->EstActif }}
                         </div>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Telephone</div>
-                            {{ $profil->Telephone }}
+                            <div class="fw-bold">id Entreprise</div>
+                            {{ $recruteur->idEntreprise }}
                         </div>
 
                       </ul>
                 </div>
             </div>
 
-            <a href="{{ route('profil') }}" class="btn btn-link mt-4">Retour</a>
+            <a href="{{ route('recruteur') }}" class="btn btn-link mt-4">Retour</a>
             <div class="btn-group mt-4" role="group" aria-label="Basic outlined example">
                 <form action="{{ route('editProfil') }}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteurDetail->idProfil }}" />
+                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
                     <input type="submit" class="btn btn-primary" value="Editer"/>
                 </form>
-                <form action="{{ route('desactiverprofil') }}" method="post">
+                <form action="{{ route('desactiverProfil') }}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteurDetail->idProfil }}" />
+                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
                     <input type="submit" class="btn btn-danger" value="Effacer"/>
                 </form>
             </div>

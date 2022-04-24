@@ -73,7 +73,7 @@ class ProfilController extends Controller
      */
     public function profilDetail(Profil $profil, Request $request)
     {
-        $idProfil = $request->idProfil;
+        $idProfil = $request->idprofil;
         $profilDetail = Profil::where('idProfil', $idProfil)->get();
         return view('profils.detail', compact('profilDetail'));
     }
@@ -86,9 +86,9 @@ class ProfilController extends Controller
      */
     public function edit(Profil $profil, Request $request)
     {
-        $idProfil = $request->idProfil;
+        $idProfil = $request->idprofil;
         $profilDetail = Profil::where('idProfil', $idProfil)->get();
-        return view('profils.edit', compact('profil', 'profilDetail'));
+        return view('profils.edit', compact('idProfil', 'profilDetail'));
     }
 
     /**
@@ -100,6 +100,7 @@ class ProfilController extends Controller
      */
     public function update(Request $request, Profil $profil)
     {
+        
         $idProfil = $request->idprofil;
         $Courriel = $request->courriel;
         $MotDePasse = $request->motdepasse;

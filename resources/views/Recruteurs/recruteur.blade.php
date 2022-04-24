@@ -36,10 +36,10 @@
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                       <form action="{{ route('recruteurDetail') }}" method="post">
                           {{ csrf_field() }}
-                          <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idprofil }}" />
+                          <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
                           <input type="submit" class="btn btn-outline-secondary" value="Voir"/>
                       </form>
-                      <form action="{{ route('editProfil') }}" method="post">
+                      <form action="{{ route('editRecruteur') }}" method="post">
                           {{ csrf_field() }}
                           <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
                           <input type="submit" class="btn btn-outline-primary" value="Editer"/>
