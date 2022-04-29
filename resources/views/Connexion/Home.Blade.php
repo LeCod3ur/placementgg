@@ -29,7 +29,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{ $userCourrielSession }}</li>
                         <li class="list-group-item">Type: {{ $userTypeProfilSession }}</li>
-                        @if ($userTypeProfilSession == "Recruteur")
+                        @if ($userTypeProfilSession == "Recruteur" || $userTypeProfilSession == "recruteur")
                             @foreach ( $activeUser as $user )
                                 <li class="list-group-item">Entreprise: {{ $user->idEntreprise }}</li>
                             @endforeach

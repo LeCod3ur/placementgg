@@ -84,7 +84,7 @@ class HomeController extends Controller
     {
         /* request()->validate([
             'courriel' => ['required', 'courriel']
-          ]); */ 
+          ]); */
 
         $Courriel = $request->courriel;
         $MotDePasse = $request->motdepasse;
@@ -108,8 +108,8 @@ class HomeController extends Controller
             'EstActif' => true
         ]);
 
-        $idProfil=Profil::where('Courriel', $Courriel)->get('idProfil');
-        
+        $idProfil=Profil::where('Courriel', $Courriel)->value('idProfil');
+
         $idEntreprise = $request->identreprise;
         //$idProfil = Profil::where('idProfil')->get()->sortByDesc('idProfil')->first()->idProfil;
 
@@ -120,7 +120,7 @@ class HomeController extends Controller
             'Description' => $request->description,
             'EstActif' => true,
             'idEntreprise' => $idEntreprise
-        ]); 
+        ]);
 
         return redirect('/login'); // redirection vers le login en attendant le landing page
     }
