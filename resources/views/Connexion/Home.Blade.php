@@ -27,9 +27,11 @@
                         @endif
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>{{ $userCourrielSession }}</b></li>
-                        <li class="list-group-item">Type: <b>{{ $userTypeProfilSession }}</b></li>
-                        @if ($userTypeProfilSession == "Recruteur")
+                        
+                        <li class="list-group-item">{{ $userCourrielSession }}</li>
+                        <li class="list-group-item">Type: {{ $userTypeProfilSession }}</li>
+                        @if ($userTypeProfilSession == "Recruteur" || $userTypeProfilSession == "recruteur")
+
                             @foreach ( $activeUser as $user )
                                 <li class="list-group-item">Entreprise: <b>{{ $user->NomEntreprise }}</b></li>
                             @endforeach

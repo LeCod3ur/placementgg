@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detail du recruteur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid px-5 py-5">
+        @foreach ($recruteurDetail as $recruteur)
+        <h2 class="mb-3">Detail Recruteur</h2>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">idProfil</div>
+                            {{ $recruteur->idProfil }}
+                        </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">Poste</div>
+                            {{ $recruteur->Poste }}
+                        </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">Description</div>
+                            {{ $recruteur->Description }}
+                        </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">Est Actif?</div>
+                            {{ $recruteur->EstActif }}
+                        </div>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">id Entreprise</div>
+                            {{ $recruteur->idEntreprise }}
+                        </div>
+
+                      </ul>
+                </div>
+            </div>
+
+            <a href="{{ route('recruteur') }}" class="btn btn-link mt-4">Retour</a>
+            <div class="btn-group mt-4" role="group" aria-label="Basic outlined example">
+                <form action="{{ route('editProfil') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
+                    <input type="submit" class="btn btn-primary" value="Editer"/>
+                </form>
+                <form action="{{ route('desactiverProfil') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="idprofil" id="idprofil" value="{{ $recruteur->idProfil }}" />
+                    <input type="submit" class="btn btn-danger" value="Effacer"/>
+                </form>
+            </div>
+            @endforeach
+    </div>
+
+
+</body>
+
+</html>

@@ -6,6 +6,9 @@ use App\Http\Requests\StoreProfilRequest;
 use App\Http\Requests\UpdateProfilRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Profil;
+use App\Models\Poste;
+use App\Models\Entreprise;
+use App\Models\Recruteur;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -18,7 +21,7 @@ class ProfilController extends Controller
     public function index()
     {
         $listeProfils = Profil::all();
-        return view('profil', compact('listeProfils'));
+        return view('profils.profil', compact('listeProfils'));
     }
 
     /**
@@ -28,7 +31,8 @@ class ProfilController extends Controller
      */
     public function create()
     {
-        //
+        $listeProfils = Profil::all();
+        return view('profils.create', compact('listeProfils'));
     }
 
     /**
@@ -37,9 +41,28 @@ class ProfilController extends Controller
      * @param  \App\Http\Requests\StoreProfilRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProfilRequest $request)
+    public function createProfilForm(Request $request)
     {
-        //
+        $Courriel = $request->courriel;
+        $MotDePasse = $request->motdepasse;
+        $Nom = $request->nom;
+        $Prenom = $request->prenom;
+        $Telephone = $request->telephone;
+        $TypeProfil = $request->typeprofil;
+        //$EstActif = $request->estactif;
+        Profil::create([
+            'idProfil' => null,
+            'Courriel' => $Courriel,
+            'MotDePasse' => $MotDePasse,
+            'Nom' => $Nom,
+            'Prenom' => $Prenom,
+            'Telephone' => $Telephone,
+            'TypeProfil' => $TypeProfil,
+            'EstActif' => true
+
+        ]);
+
+        return redirect('/profil');
     }
 
     /**
@@ -48,9 +71,11 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function show(Profil $profil)
+    public function profilDetail(Profil $profil, Request $request)
     {
-        //
+        $idProfil = $request->idprofil;
+        $profilDetail = Profil::where('idProfil', $idProfil)->get();
+        return view('profils.detail', compact('profilDetail'));
     }
 
     /**
@@ -59,9 +84,11 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profil $profil)
+    public function edit(Profil $profil, Request $request)
     {
-        //
+        $idProfil = $request->idprofil;
+        $profilDetail = Profil::where('idProfil', $idProfil)->get();
+        return view('profils.edit', compact('idProfil', 'profilDetail'));
     }
 
     /**
@@ -71,19 +98,41 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProfilRequest $request, Profil $profil)
+    public function update(Request $request, Profil $profil)
     {
-        //
+        
+        $idProfil = $request->idprofil;
+        $Courriel = $request->courriel;
+        $MotDePasse = $request->motdepasse;
+        $Nom = $request->nom;
+        $Prenom = $request->prenom;
+        $Telephone = $request->telephone;
+        $TypeProfil = $request->typeprofil;
+
+        Profil::where('idProfil', $idProfil)->update([
+            'Courriel' => $Courriel,
+            'MotDePasse' => $MotDePasse,
+            'Nom' => $Nom,
+            'Prenom' => $Prenom,
+            'Telephone' => $Telephone,
+            'TypeProfil' => $TypeProfil
+        ]);
+        return redirect('/profil');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @param  \App\Http\Requests\UpdateProfilRequest  $request
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profil $profil)
+    public function desactiver(Profil $profil, Request $request)
     {
-        //
+        $idProfil = $request->idprofil;
+
+        Profil::where('idProfil', $idProfil)->update([
+            'EstActif' => false
+        ]);
+        return redirect('/profil');
     }
 }
