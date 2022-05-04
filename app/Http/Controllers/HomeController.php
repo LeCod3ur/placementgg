@@ -12,15 +12,19 @@ class HomeController extends Controller
     public function home()
     {
         $user = session()->get("userID");
-        if ($user != null) {
-            $userIDSession = session()->get("userID");
-            $userNomSession = session()->get("userNom");
-            $userPrenomSession = session()->get("userPrenom");
-            $userCourrielSession = session()->get("userCourriel");
-            $userTypeProfilSession = session()->get("userTypeProfil");
-            $activeUser = Recruteur::all()->where('idProfil', $userIDSession);
-            return view('Connexion.home', compact('userIDSession', 'userNomSession', 'userPrenomSession', 'userCourrielSession', 'userTypeProfilSession', 'activeUser'));
-        } else {
+
+      if($user != null)
+        {
+        $userIDSession = session()->get("userID");
+        $userNomSession = session()->get("userNom");
+        $userPrenomSession = session()->get("userPrenom");
+        $userCourrielSession = session()->get("userCourriel");
+        $userTypeProfilSession = session()->get("userTypeProfil");
+        $activeUser = Recruteur::join('Entreprise', 'Entreprise.idEntreprise', '=', 'Recruteur.idEntreprise')->select('*')->where('idProfil', $userIDSession)->get();
+        return view ('Connexion.home', compact('userIDSession', 'userNomSession', 'userPrenomSession', 'userCourrielSession', 'userTypeProfilSession', 'activeUser'));
+        }
+        else
+        {
             return redirect("/login");
         }
     }
