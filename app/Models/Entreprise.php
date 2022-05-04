@@ -12,5 +12,5 @@ class Entreprise extends Model
     public $timestamps = false;
     protected $primaryKey ='idEntreprise';
     public $incrementing = true;
-    protected $fillable = ['idEntreprise', 'NomEntreprise', 'Telephone',  'Courriel', 'NombreEmploye', 'Adresse', 'AnneeDeCreation', 'SiteWeb', 'SecteurActivite', 'Description', 'isHiring', 'EstActif'];
+    protected $fillable = ['idEntreprise', 'NomEntreprise', 'Courriel', 'Telephone', 'NombreEmploye', 'Adresse', 'AnneeDeCreation', 'SiteWeb', 'SecteurActivite', 'Description', 'isHiring', 'EstActif'];
 }

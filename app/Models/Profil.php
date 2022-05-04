@@ -12,5 +12,5 @@ class Profil extends Model
     public $timestamps = false;
     protected $primaryKey ='idProfil';
     public $incrementing = true;
-    protected $fillable = ['idProfil', 'Courriel', 'MotDePasse', 'Nom', 'Prenom', 'Telephone', 'TypeProfil'];
+    protected $fillable = ['idProfil', 'idImage', 'Courriel', 'MotDePasse', 'Nom', 'Prenom', 'Telephone', 'TypeProfil', 'EstActif'];
 }

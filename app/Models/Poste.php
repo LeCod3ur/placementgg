@@ -12,5 +12,5 @@ class Poste extends Model
     public $timestamps = false;
     protected $primaryKey ='idPoste';
     public $incrementing = true;
-    protected $fillable = ['idPoste', 'Titre', 'LieuDeTravail', 'NombreDePoste', 'TypeOffre', 'EstActif', 'idEntreprise', 'CreerPar', 'Horaire', 'DureeEmploi', 'DatePublication', 'DateDebutPoste', 'DateFinPoste', 'DateFinOffre', 'Description', 'Lieu'];
+    protected $fillable = ['idPoste','NumeroReference', 'Titre', 'LieuDeTravail', 'NombreDePoste', 'TypeOffre', 'EstActif', 'idEntreprise', 'CreerPar', 'Horaire', 'DureeEmploi', 'DatePublication', 'DateDebutPoste', 'DateFinPoste', 'DateFinOffre', 'Description', 'Lieu'];
 }

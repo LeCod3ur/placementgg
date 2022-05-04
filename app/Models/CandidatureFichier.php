@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Recruteur extends Model
+class CandidatureFichier extends Model
 {
     use HasFactory;
-    protected $table = 'Recruteur';
+    protected $table = 'CandidatureFichier';
     public $timestamps = false;
-    protected $primaryKey ='idRecruteur';
+    protected $primaryKey =['idCandidature', 'idFichier'];
     public $incrementing = false;
-    protected $fillable = ['idRecruteur', 'Poste', 'Description', 'idEntreprise', 'idProfil'];
+    protected $fillable = ['idCandidature', 'idFichier'];
 }
